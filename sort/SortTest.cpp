@@ -27,11 +27,6 @@ int main (int argc, char *argv[])
 {
   char opt;
   int arraySize = 100;
-  int sortType = 0;
-  bool verboseOutput = false;
-  // put ':' in the starting of the
-  // string so that program can
-  //distinguish between '?' and ':'
   while((opt = getopt(argc, argv, ":iqvhma:")) != -1)
   {
     switch(opt)
@@ -72,6 +67,7 @@ int main (int argc, char *argv[])
   int* randomArray = new int[arraySize];
   std::cout << "building array size: " << arraySize << std::endl;
   buildRandomArray(randomArray, arraySize);
+
   // Print the random array
   SortInterface* sort = new NoSort(randomArray, arraySize);
   if(verboseOutput)
@@ -83,7 +79,8 @@ int main (int argc, char *argv[])
   {
     std::cout << "array is sorted" << std::endl;
   }
-  else{
+  else
+  {
     std::cout << "Array is not sorted" << std::endl;
   }
   delete sort;
@@ -110,18 +107,20 @@ int main (int argc, char *argv[])
   auto sortRunTime = std::chrono::duration_cast<std::chrono::microseconds>(sortStopTime - sortStartTime);
   std::cout << "Sort runtime:" << sortRunTime.count() << " microseconds" << std::endl;
   if(verboseOutput)
-{
-  std::cout << "Sorted array:" << std::endl;
-  sort->printArray(randomArray, arraySize);
-}
+  {
+    std::cout << "Sorted array:" << std::endl;
+    sort->printArray(randomArray, arraySize);
+  }
   // check if array is sorted
   if(sort->checkIfSorted(randomArray, arraySize))
   {
     std::cout << "array is sorted" << std::endl;
   }
-  else{
+  else
+  {
     std::cout << "Array is not sorted" << std::endl;
   }
   delete sort;
+  delete randomArray;
   return 0;
 }
