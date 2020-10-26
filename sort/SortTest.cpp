@@ -1,4 +1,3 @@
-/* rand example: guess the number */
 #include <stdio.h>      /* printf, scanf, puts, NULL */
 #include <unistd.h>
 #include <stdlib.h>     /* srand, rand */
