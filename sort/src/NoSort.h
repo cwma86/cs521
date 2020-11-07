@@ -1,7 +1,11 @@
 #ifndef No_Sort_h
 #define No_Sort_h
 #include "interface/SortInterface.h"
-class NoSort:public SortInterface{
+
+// Test class for using the sort interface 
+//   functionality without performing a sort
+class NoSort:public SortInterface
+{
 public:
   NoSort(int* array, int size)
   {
@@ -11,4 +15,5 @@ public:
 private:
   void sort(int* array, int size){};
 };
+
 #endif /* !No_Sort_h*/
