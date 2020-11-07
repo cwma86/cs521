@@ -1,9 +1,12 @@
 #include "QuickSort.h"
-QuickSort::QuickSort(int* array, int size){
+
+QuickSort::QuickSort(int* array, int size)
+{
   std::cout << "Performing Quick Sort" << std::endl;
   sort(array, size);
   std::cout << "Quick Sort Completed" << std::endl;
 }
+
 void QuickSort::sort(int* array, int size)
 {
   quickSort(array, 0, size);
@@ -19,6 +22,7 @@ void QuickSort::quickSort(int* array, int low, int high)
 
   }
 }
+
 int QuickSort::partition(int* array, int low, int high)
 {
   // Create Pivot
@@ -36,7 +40,8 @@ int QuickSort::partition(int* array, int low, int high)
   return index;
 }
 
-void QuickSort::swap(int* array, int index1, int index2){
+void QuickSort::swap(int* array, int index1, int index2)
+{
   int tempValue = array[index1];
   array[index1] = array[index2];
   array[index2] = tempValue;
