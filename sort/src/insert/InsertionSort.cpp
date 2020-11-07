@@ -1,9 +1,12 @@
 #include "InsertionSort.h"
-InsertionSort::InsertionSort(int* array, int size){
+
+InsertionSort::InsertionSort(int* array, int size)
+{
   std::cout << "Performing Insertion Sort" << std::endl;
   sort(array, size);
   std::cout << "Insertion Sort Completed" << std::endl;
 }
+
 void InsertionSort::sort(int* array, int size)
 {
   int countCompares = 0;
