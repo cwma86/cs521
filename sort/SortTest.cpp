@@ -27,6 +27,8 @@ int main (int argc, char *argv[])
 {
   char opt;
   int arraySize = 100;
+  int sortType = 0;
+  bool verboseOutput = false;
   while((opt = getopt(argc, argv, ":iqvhma:")) != -1)
   {
     switch(opt)

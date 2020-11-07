@@ -9,6 +9,7 @@ private:
 
   // Perform the insertion sort
   void sort(int* array, int size);
+
   // Insert the value at index to the insertlocation and shift all
   // values from insertlocation to index up 1 location
   void insert(int* array, int size,int index,int insertLocation){
