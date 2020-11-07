@@ -7,6 +7,7 @@ InsertionSort::InsertionSort(int* array, int size){
 void InsertionSort::sort(int* array, int size)
 {
   int countCompares = 0;
+  // TODO try implementing without this insert that has n^2 run time
   // Start with 2nd index in the array
   for(auto i = 1; i < size; i++)
   {

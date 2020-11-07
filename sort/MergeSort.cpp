@@ -1,9 +1,14 @@
 #include "MergeSort.h"
-MergeSort::MergeSort(int* array, int size){
+#include <list>
+#include <algorithm>
+
+MergeSort::MergeSort(int* array, int size)
+{
   std::cout << "Performing Merge Sort" << std::endl;
   sort(array, size);
   std::cout << "Merge Sort Completed" << std::endl;
 }
+
 void MergeSort::sort(int* array, int size)
 {
   doMergeSort(array, 0, size);
@@ -13,36 +18,65 @@ void MergeSort::doMergeSort(int* array, int left, int size)
 {
     if (size > 1)
     {
+      // Build the left and right arrays
+      int leftSize = (size) / 2;
+      int rightIndex = leftSize + left;
+      int rightSize = size - leftSize;
+      int* leftArray = new int[leftSize];
+      std::copy(array, array+leftSize, leftArray);
+      int* rightArray = new int[rightSize];
+      std::copy(array+rightIndex, array+size, rightArray);
 
-        // Same as (l+r)/2, but avoids
-        // overflow for large l and h
-        int leftSize = (size) / 2;
-        int rightIndex = leftSize + left;
-        int rightSize = size - leftSize;
+      // Sort the left and right halves
+      doMergeSort(leftArray, 0, leftSize);
+      doMergeSort(rightArray, 0, rightSize);
 
-        // Sort first and second halves
-        doMergeSort(array, left, leftSize);
-        doMergeSort(array, rightIndex, rightSize);
+      // Merge the left and right haves back to the initial input array
+      merge(array, leftArray, leftSize , rightArray, rightSize);
 
-        merge(array, left, rightIndex , rightIndex + rightSize - 1);
+      // Clean up the temp arrays
+      delete[] leftArray;
+      delete[] rightArray;
     }
 }
-void MergeSort::merge(int* array, int lStartIndex,int rStartIndex, int rEndIndex)
+
+void MergeSort::merge(int* array, int* leftArray, int leftSize, int* rightArray, int rightSize)
 {
-  // find the sub array lengths
-  int i= lStartIndex;
-  int j= rStartIndex;
-  while(j <= rEndIndex && i < rEndIndex)
+  int arrayIndex = 0;
+  int i = 0;
+  int j = 0;
+  while(i < leftSize)
   {
-    if(array[i] <= array[j])
+    while(j < rightSize)
     {
-      i++;
+      if(i >= leftSize)
+      {
+        // Append all right values to end of the array
+        array[arrayIndex] = rightArray[j];
+        j++;
+        arrayIndex++;
+      }
+      else if(leftArray[i] < rightArray[j])
+      {
+        // insert left array value
+        array[arrayIndex] = leftArray[i];
+        i++;
+        arrayIndex++;
+      }
+      else
+      {
+        // insert right array value
+        array[arrayIndex] = rightArray[j];
+        j++;
+        arrayIndex++;
+      }
     }
-    else
+    if(i < leftSize)
     {
-      insert(array, rEndIndex - lStartIndex, j , i);
+      // append all remaining left values to the end of the array
+      array[arrayIndex] = leftArray[i];
       i++;
-      j++;
+      arrayIndex++;
     }
   }
 }
