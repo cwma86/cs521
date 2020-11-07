@@ -1,6 +1,6 @@
 #ifndef Insertion_Sort_h
 #define Insertion_Sort_h
-#include "SortInterface.h"
+#include "../interface/SortInterface.h"
 class InsertionSort:public SortInterface{
 public:
   InsertionSort(int* array, int size);

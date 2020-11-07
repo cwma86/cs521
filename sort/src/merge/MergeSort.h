@@ -2,7 +2,7 @@
 #define Merge_Sort_h
 #include <list>
 
-#include "SortInterface.h"
+#include "../interface/SortInterface.h"
 
 class MergeSort:public SortInterface{
 public:

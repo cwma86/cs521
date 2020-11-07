@@ -4,11 +4,11 @@
 #include <time.h>       /* time */
 #include <chrono>
 #include <iostream>
-#include "SortInterface.h"
-#include "InsertionSort.h"
-#include "MergeSort.h"
+#include "interface/SortInterface.h"
+#include "insert/InsertionSort.h"
+#include "merge/MergeSort.h"
 #include "NoSort.h"
-#include "QuickSort.h"
+#include "quick/QuickSort.h"
 
 
 void buildRandomArray(int* randomArray, int size){

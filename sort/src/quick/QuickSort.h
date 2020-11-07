@@ -1,6 +1,6 @@
 #ifndef Quick_Sort_h
 #define Quick_Sort_h
-#include "SortInterface.h"
+#include "../interface/SortInterface.h"
 class QuickSort:public SortInterface{
 public:
   QuickSort(int* array, int size);

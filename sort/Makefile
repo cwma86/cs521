@@ -1,28 +1,29 @@
-# Makefile
-# *****************************************************
-# Variables to control Makefile operation
+CC    = g++
+FLAGS        = -std=c++11
+CFLAGS       = -fPIC -g -Wall -Wextra
+LDFLAGS      = -W
+LIBS +=
+SUBDIRS = $(shell ls -d */)
 
-CXX = g++
-CXXFLAGS = -Wall -g -std=c++11
+DEBUGFLAGS   = -O0 -D _DEBUG
+RELEASEFLAGS = -O2 -D NDEBUG -combine -fwhole-program
 
-# ****************************************************
-# Targets needed to bring the executable up to date
+TARGET  = SortTest
+OBJECTS = $(shell find . -name '*.o')
 
-SortTest: SortTest.o InsertionSort.o QuickSort.o MergeSort.o
-	$(CXX) $(CXXFLAGS) -o SortTest SortTest.o InsertionSort.o QuickSort.o MergeSort.o
+$(TARGET): subdirs
+	$(CC) $(FLAGS) $(CFLAGS) $(DEBUGFLAGS) -o $(TARGET) $(OBJECTS) $(LDFLAGS) $(LIBS)
 
-# The main.o target can be written more simply
+subdirs:
+	for dir in $(SUBDIRS) ; do \
+		echo $$dir ; \
+		make -C  $$dir ; \
+	done;
 
-main.o: SortTest.cpp InsertionSort.h QuickSort.h MergeSort.h
-	$(CXX) $(CXXFLAGS) -c SortTest.cpp
-
-InsertionSort.o: InsertionSort.cpp InsertionSort.h
-
-QuickSort.o: QuickSort.cpp QuickSort.h
-
-MergeSort.o: MergeSort.cpp MergeSort.h
+all: $(TARGET)
 
 clean:
-	rm -f *.o
-	rm -f *.out
-	rm -f SortTest
+	rm -f $(TARGET) $(OBJECTS)
+	for dir in $(SUBDIRS) ; do \
+		make clean -C  $$dir ; \
+	done
