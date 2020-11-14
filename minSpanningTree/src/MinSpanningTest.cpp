@@ -7,18 +7,6 @@
 #include "MST/KruskalMST.h"
 
 
-void buildRandomGraph(int* randomArray, size_t size){
-  srand (time(0));
-  /* initialize random seed: */
-  for (auto i = 0; i < size; i++)
-  {
-
-    /* generate number between 0 and 100: */
-    *(randomArray+i) = rand() % 100;
-
-  }
-}
-
 void createEdge(Graph* graph, int index, int src, int dest, int weight)
 {
     // add edge_ 5-6
@@ -117,9 +105,6 @@ Graph * constExample2()
 int main (int argc, char *argv[])
 {
   char opt;
-  int arraySize = 100;
-  int sortType = 0;
-  bool verboseOutput = false;
   while((opt = getopt(argc, argv, "h")) != -1)
   {
     switch(opt)
@@ -138,6 +123,7 @@ int main (int argc, char *argv[])
     Graph * graph = constExample2();
     KruskalMST* tmp = new KruskalMST(graph);
     tmp->printResult();
+    //TODO create an actual test at some point
 
   return 0;
 }
