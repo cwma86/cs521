@@ -134,11 +134,10 @@ int main (int argc, char *argv[])
     }
   }
 
-
-
     // Function call
     Graph * graph = constExample2();
     KruskalMST* tmp = new KruskalMST(graph);
+    tmp->printResult();
 
   return 0;
 }
