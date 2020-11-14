@@ -13,22 +13,22 @@ public:
         weight_(weight)
     {}
 
-    void setSrc(int src)
+    inline void setSrc(int src)
     { src_ = src;}
 
-    int getSrc() const
+    inline int getSrc() const
     {return src_;}
 
-    void setDest(int dest)
+    inline void setDest(int dest)
     { dest_ = dest;}
 
-    int getDest() const
+    inline int getDest() const
     {return dest_;}
 
-    void setWeight(int weight)
+    inline void setWeight(int weight)
     { weight_ = weight;}
 
-    int getWeight() const
+    inline int getWeight() const
     {return weight_;}
 
 private:

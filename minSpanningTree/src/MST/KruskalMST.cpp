@@ -18,23 +18,23 @@ KruskalMST::KruskalMST(Graph* graph):
     Subset* subsets = new Subset[(vertexSize_ * sizeof(Subset))];
 
     // Create vertex subsets with single elements
-    for (int v = 0; v < vertexSize_; ++v)
+    for (size_t v = 0; v < vertexSize_; ++v)
     {
         subsets[v].parent = v;
         subsets[v].rank = 0;
     }
 
     // Number of edges to be taken is equal to vertex-1
-    int e = 0; // An index variable, used for result[]
-    int i = 0; // An index variable, used for sorted edges
+    size_t e = 0; // An index variable, used for result[]
+    size_t i = 0; // An index variable, used for sorted edges
     while (e < vertexSize_ - 1 && i < graph->numOfEdges_)
     {
         // Step 2: Pick the smallest edge. And increment
         // the index for next iteration
         Edge next_edge = graph->edge_[i++];
 
-        int x = MSTUtils::find(subsets, next_edge.getSrc());
-        int y = MSTUtils::find(subsets, next_edge.getDest());
+        size_t x = MSTUtils::find(subsets, next_edge.getSrc());
+        size_t y = MSTUtils::find(subsets, next_edge.getDest());
 
         // If including this edge does't cause cycle,
         // include it in result and increment the index
@@ -55,7 +55,7 @@ void KruskalMST::printResult()
     std::cout << "Following are the edges in the constructed "
             "MST\n";
     int minimumCost = 0;
-    for (int i = 0; i < vertexSize_; ++i)
+    for (size_t i = 0; i < vertexSize_; ++i)
     {
         std::cout << result_[i].getSrc() << " -- " << result_[i].getDest()
              << " == " << result_[i].getWeight() << std::endl;

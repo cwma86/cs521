@@ -5,7 +5,7 @@
 namespace MSTUtils{
     // A utility function to find set of an element i
     // (uses path compression technique)
-    int find(Subset subsets[], int element)
+    inline int find(Subset subsets[], int element)
     {
         // find root and make root as parent of element
         // (path compression)
@@ -16,7 +16,7 @@ namespace MSTUtils{
         return subsets[element].parent;
     }
 
-    void Union(Subset subsets[], int element1, int element2)
+    inline void Union(Subset subsets[], int element1, int element2)
     {
         int element1root = find(subsets, element1);
         int element2root = find(subsets, element2);
@@ -37,7 +37,7 @@ namespace MSTUtils{
     }
     // Compare two edges according to their weights.
     // Used in qsort() for sorting an array of edges
-    int myComp(const void* edge1, const void* edge2)
+    inline int myComp(const void* edge1, const void* edge2)
     {
         Edge* a1 = (Edge*)edge1;
         Edge* b1 = (Edge*)edge2;

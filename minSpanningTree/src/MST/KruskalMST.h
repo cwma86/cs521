@@ -7,6 +7,6 @@ class KruskalMST
     KruskalMST(Graph* graph);
     void printResult();
     Edge* result_;
-    int vertexSize_;
+    size_t vertexSize_;
 };
 #endif

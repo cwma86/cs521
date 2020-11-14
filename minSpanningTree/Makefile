@@ -1,12 +1,15 @@
 CC    = g++
 FLAGS        = -std=c++11
-CFLAGS       = -fPIC -g -Wall -Wextra
+CFLAGS       = -fPIC -Wall -Wextra
 LDFLAGS      = -W
+ifeq ($(RELEASE),1)
+	DEBUGFLAGS = -O2 -D NDEBUG
+else
+	DEBUGFLAGS = -g -O0 -D _DEBUG
+endif
+
 LIBS +=
 SUBDIRS = $(shell ls -d */)
-
-DEBUGFLAGS   = -O0 -D _DEBUG
-RELEASEFLAGS = -O2 -D NDEBUG -combine -fwhole-program
 
 TARGET  = minSpanTest
 OBJECTS = $(shell find . -name '*.o')
@@ -18,7 +21,7 @@ subdirs:
 	for dir in $(SUBDIRS) ; do \
 		echo $$dir ; \
 		if ( ls $$dir/Makefile 2> /dev/null ); then \
-			make -C  $$dir ; \
+			make -C  $$dir; \
 		else \
 			echo "No Make file in directory"; \
 		fi; \
