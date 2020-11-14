@@ -17,7 +17,11 @@ $(TARGET): subdirs
 subdirs:
 	for dir in $(SUBDIRS) ; do \
 		echo $$dir ; \
-		make -C  $$dir ; \
+		if ( ls $$dir/Makefile 2> /dev/null ); then \
+			make -C  $$dir ; \
+		else \
+			echo "No Make file in directory"; \
+		fi; \
 	done;
 
 all: $(TARGET)
@@ -25,5 +29,9 @@ all: $(TARGET)
 clean:
 	rm -f $(TARGET) $(OBJECTS)
 	for dir in $(SUBDIRS) ; do \
-		make clean -C  $$dir ; \
+		if ( ls $$dir/Makefile ); then \
+			make clean -C  $$dir ; \
+		else \
+			echo "No Make file in directory"; \
+		fi; \
 	done
