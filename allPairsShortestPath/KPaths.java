@@ -94,20 +94,20 @@ class AllPairShortestPath
                 dist = extendShortestPath(dist, graph);
                 tempintVertices = 0;
                 printSolution(dist);
-                m = m +1;
+                m = 1;
             }
             else
             {
                 System.out.println("even");
                 dist = extendShortestPath(dist, graph);
                 printSolution(dist);
-                if (m > 0)
+                if ( m==0)
                 {
-                    m = m *2;
+                    m = 1;
                 }
                 else
                 {
-                    m = 1;
+                    m = m *2;
                 }
             }
         }
