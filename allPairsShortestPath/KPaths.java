@@ -53,16 +53,9 @@ class AllPairShortestPath
                 {
                     // If vertex k is on the shortest path from
                     // i to j, then update the value of dist[i][j]
-                    // System.out.print("dist[" +i+"][" + j + "] : " + dist[i][j]);
-                    // System.out.print(" " );
-                    // System.out.print("D[" +i+"][" + k + "]: " + D[i][k]);
-                    // System.out.print(" " );
-                    // System.out.print("W[" +k+"][" + j + "]: " + W[k][j]);
-                    // System.out.println(" " );
                     if (dist[i][j] > D[i][k] + W[k][j] &&  D[i][k] != 0 &&  W[k][j] != 0 )
                     {
                         dist[i][j] = D[i][k] + W[k][j];
-                        // System.out.println("Setting dist[" +i+"][" + j + "] : " + dist[i][j]);
                     }
                 }
             }
@@ -82,33 +75,20 @@ class AllPairShortestPath
             for (j = 0; j < V_; j++)
                 dist[i][j] = graph[i][j];
 
-        int m = 0;
-        int tempintVertices = intVertices;
-        while (m < intVertices)
+        int m = 1;
+        while (m <= intVertices)
         {
-            int temp = tempintVertices%2;
-            System.out.println("temp" + temp);
-            if ( temp > 0)
+            if ( m == intVertices)
             {
-                System.out.println("odd");
                 dist = extendShortestPath(dist, graph);
-                tempintVertices = 0;
                 printSolution(dist);
-                m = 1;
+                m = m+1;
             }
             else
             {
-                System.out.println("even");
-                dist = extendShortestPath(dist, graph);
+                dist = extendShortestPath(dist, dist);
                 printSolution(dist);
-                if ( m==0)
-                {
-                    m = 1;
-                }
-                else
-                {
                     m = m *2;
-                }
             }
         }
         printSolution(dist);
@@ -125,7 +105,6 @@ class AllPairShortestPath
                         };
         AllPairShortestPath a = new AllPairShortestPath(graph[0].length);
 
-        int k = 3; //intermediate vertices
+        int k =3; //intermediate vertices
         a.pathForIntVert(graph, k);
-    }
 }
