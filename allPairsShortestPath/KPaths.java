@@ -78,7 +78,7 @@ class AllPairShortestPath
         int m = 1;
         while (m <= intVertices)
         {
-            if ( m == intVertices)
+            if ( m == intVertices)// if odd number of calls
             {
                 dist = extendShortestPath(dist, graph);
                 printSolution(dist);
