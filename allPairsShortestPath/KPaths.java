@@ -1,13 +1,7 @@
-
-// A Java program for Floyd Warshall All Pairs Shortest
-// Path algorithm.
 import java.util.*;
-
 import javax.lang.model.util.ElementScanner6;
-
 import java.lang.*;
 import java.io.*;
-
 
 class AllPairShortestPath
 {
@@ -21,7 +15,7 @@ class AllPairShortestPath
     void printSolution(int dist[][])
     {
         System.out.println("The following matrix shows the shortest "+
-                         "distances between every pair of vertices");
+                         "distances between every pair of vertices for a give number of int vertices (k)");
         for (int i=0; i<V_; ++i)
         {
             for (int j=0; j<V_; ++j)
@@ -38,15 +32,13 @@ class AllPairShortestPath
     int[][] extendShortestPath(int D[][], int W[][])
     {
         int dist[][] = new int[D.length][D[0].length];
+        // Init the return matrix
         for (int[] row : dist)
         {
             Arrays.fill(row, INF);
         }
-        // Pick all vertices as source one by one
         for (int i = 0; i < V_; i++)
         {
-            // Pick all vertices as destination for the
-            // above picked source
             for (int j = 0; j < V_; j++)
             {
                 for (int k = 0; k < V_; k++)
@@ -62,15 +54,13 @@ class AllPairShortestPath
         }
        return dist;
     }
+
     void pathForIntVert(int graph[][],int intVertices)
     {
         int dist[][] = new int[graph[0].length][graph[0].length];
         int i, j;
 
-        /* Initialize the solution matrix same as input graph matrix.
-           Or we can say the initial values of shortest distances
-           are based on shortest paths considering no intermediate
-           vertex. */
+        /* Init the return matrix*/
         for (i = 0; i < V_; i++)
             for (j = 0; j < V_; j++)
                 dist[i][j] = graph[i][j];
@@ -107,4 +97,5 @@ class AllPairShortestPath
 
         int k =3; //intermediate vertices
         a.pathForIntVert(graph, k);
+    }
 }
